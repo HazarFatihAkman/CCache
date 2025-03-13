@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build cache library for Linux & Macos",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall",               // Enable all warnings
+                "-fPIC",               // Generate position-independent code (needed for shared libraries)
+                "-shared",             // Create a shared library
+                "-o", "build/libcache.so",   // Output shared library name (Linux/Mac) or libcache.dll for Windows
+                "-I${workspaceFolder}/include",
+                "src/cache.c"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Generated task for building cache library"
+        },
+        {
+            "label": "build cache library for Windows",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall",               // Enable all warnings
+                "-shared",             // Create a shared library
+                "-o", "${workspaceFolder}/build/cache.dll",  // Output shared library (DLL)
+                "-I${workspaceFolder}/include",  // Include path for headers (adjust if needed)
+                "${workspaceFolder}/src/cache.c"  // Input C source file for the DLL
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Generated task for building cache library"
+        }
+        
+    ]
+}

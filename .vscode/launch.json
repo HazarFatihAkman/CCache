@@ -1,0 +1,51 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Linux & Macos Cache Library",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/main.c", // Replace with the actual compiled executable name
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb", // Adjust this path if necessary
+            "preLaunchTask": "build cache library for Linux & Macos", // Run the build task before debugging
+            "internalConsoleOptions": "openOnSessionStart",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        },
+        {
+            "name": "Debug Windows Cache Library",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/main_test.exe",  // The actual executable that uses the cache.dll
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build cache library for Windows",  // Run the build task before debugging
+            "internalConsoleOptions": "openOnSessionStart",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+        
+    ]
+}
