@@ -5,7 +5,7 @@ Cache_List **c_lists = NULL;
 
 static Cache_List *find_c_list(char *c_namespace) {
     for (int i = 0; i < c_lists_size; i++) {
-        if (c_lists[i]->c_namespace == c_namespace) {
+        if (strcmp(c_lists[i]->c_namespace, c_namespace) == 0) {
             return c_lists[i];
         }
     }

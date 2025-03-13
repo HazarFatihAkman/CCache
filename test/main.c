@@ -1,6 +1,23 @@
 #include "../include/cache.h"
+typedef struct {
+  int id;
+  char *name;
+} Test;
 
 int main(void) {
+    printf("Test struct\n-------------\n");
+    Test *t = (Test*)malloc(sizeof(Test));
+    t->name = "Test";
+    t->id = 1;
+
+    Cache *struct_cache = (Cache*)malloc(sizeof(Cache));
+    struct_cache->index = 0;
+    struct_cache->value = t;
+
+    Test *t_2 = (Test*)struct_cache->value;
+    printf("%d | %s\n", t_2->id, t_2->name);
+    printf("\n");
+
     c_lists = (Cache_List**)malloc(sizeof(Cache_List));
     char *t_c_namespace = "test.c_namespace";
     char *t_c_namespace2 = "test.c_namespace.2";
@@ -29,7 +46,7 @@ int main(void) {
     c_1_3->value = "c_1_3 Test 3";
     push_cache(t_c_namespace2, c_1_3);
 
-    printf("Print Cache_List\n");
+    printf("Print Cache_List\n-------------\n");
     for (int i = 0; i < c_lists_size; i++) {
         printf("c_namespace : %s \n", c_lists[i]->c_namespace);
         
@@ -40,7 +57,7 @@ int main(void) {
 
     delete_cache(t_c_namespace2, c_1_2);
     delete_cache(t_c_namespace, c_3);
-    printf("\nDeleted Cache_List\n");
+    printf("\nDeleted Cache_List\n-------------\n");
     for (int i = 0; i < c_lists_size; i++) {
         printf("c_namespace : %s \n", c_lists[i]->c_namespace);
         
@@ -49,6 +66,7 @@ int main(void) {
         }
     }
 
+    printf("\nFecth Cache_List (test.c_namespace.2)\n-------------\n");
     Cache_List *c_test_list = fetch_caches(t_c_namespace2);
     for (int i = 0; i < c_test_list->size; i++) {
             printf("c_namespace : %s | Value : %s\n", c_test_list->c_namespace, c_test_list->Caches[i]->value);
