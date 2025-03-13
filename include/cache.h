@@ -13,7 +13,7 @@
 
 typedef struct {
     int index;
-    char *value;
+    void *value;
 } Cache;
 
 typedef struct {
