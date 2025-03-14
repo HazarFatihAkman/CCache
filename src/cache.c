@@ -13,11 +13,11 @@ static Cache_List *find_c_list(char *c_namespace) {
     return NULL;
 }
 
-CACHE_API Cache_List *fetch_caches(char *c_namespace) {
+Cache_List *fetch_caches(char *c_namespace) {
     return find_c_list(c_namespace);
 }
 
-CACHE_API void push_cache(char *c_namespace, Cache *c) {
+void push_cache(char *c_namespace, Cache *c) {
     Cache_List *c_list = find_c_list(c_namespace);
     int c_list_null = c_list == NULL;
     if (c_list_null) {
@@ -40,7 +40,7 @@ CACHE_API void push_cache(char *c_namespace, Cache *c) {
     }
 }
 
-CACHE_API void delete_cache(char *c_namespace, Cache *c) {
+void delete_cache(char *c_namespace, Cache *c) {
     Cache_List *c_list = find_c_list(c_namespace);
 
     for (int i = 0; i < c_list->size; i++) {
