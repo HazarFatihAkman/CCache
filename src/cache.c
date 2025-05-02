@@ -44,12 +44,12 @@ void delete_cache(char *c_namespace, Cache *c) {
     Cache_List *c_list = find_c_list(c_namespace);
 
     for (int i = 0; i < c_list->size; i++) {
-        if (i >= c->index && i <  c_list->size - 1) {
+        if (i >= c->index && i < c_list->size - 1) {
             c_list->Caches[i] = c_list->Caches[i+1];
             c_list->Caches[i]->index = i;
         }
 
-        if (i == ( c_list->size - 1)) {
+        if (i == (c_list->size - 1)) {
             c_list->Caches[i] = NULL;
         }
     }
