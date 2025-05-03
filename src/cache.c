@@ -1,9 +1,9 @@
 #include "../include/cache.h"
 
 int c_lists_size = 0;
-Cache_List **c_lists = NULL;
+Cache_List** c_lists = NULL;
 
-static Cache_List *find_c_list(char *c_namespace) {
+static Cache_List* find_c_list(c_str c_namespace) {
     for (int i = 0; i < c_lists_size; i++) {
         if (strcmp(c_lists[i]->c_namespace, c_namespace) == 0) {
             return c_lists[i];
@@ -13,12 +13,12 @@ static Cache_List *find_c_list(char *c_namespace) {
     return NULL;
 }
 
-Cache_List *fetch_caches(char *c_namespace) {
+Cache_List* fetch_caches(c_str c_namespace) {
     return find_c_list(c_namespace);
 }
 
-void push_cache(char *c_namespace, Cache *c) {
-    Cache_List *c_list = find_c_list(c_namespace);
+void push_cache(c_str c_namespace, Cache* c) {
+    Cache_List* c_list = find_c_list(c_namespace);
     int c_list_null = c_list == NULL;
     if (c_list_null) {
         c_list = (Cache_List*)malloc(sizeof(Cache_List));
@@ -40,8 +40,8 @@ void push_cache(char *c_namespace, Cache *c) {
     }
 }
 
-void delete_cache(char *c_namespace, Cache *c) {
-    Cache_List *c_list = find_c_list(c_namespace);
+void delete_cache(c_str c_namespace, Cache* c) {
+    Cache_List* c_list = find_c_list(c_namespace);
 
     for (int i = 0; i < c_list->size; i++) {
         if (i >= c->index && i < c_list->size - 1) {
